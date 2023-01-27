@@ -12,12 +12,6 @@ public class FrequencyCalculator {
     public FrequencyCalculator(Map<String, Integer> map, int totalWord){
         this.map = map;
         this.totalWord = totalWord;
-        for (String key : map.keySet()){
-            if (this.topArray.size()>0){
-                break;
-            }
-            this.topArray.add(key);
-        }
     }
     //Methods - check if current word is larger than any of the top 10 words, if yes then return the index, else return -1
     public int compareRanking(String key){
@@ -32,15 +26,13 @@ public class FrequencyCalculator {
     }
     //Methods - update top 10 words
     public void updateRanking(String key, int insertPos){
-        if (!this.topArray.contains(key)){
-            if (topArray.size()<10 && insertPos==-1){ //topArray still not fully filled yet and new word is smallest
-                topArray.add(key); //add to the end of the list
-            } else if (topArray.size()<10 && insertPos>-1){ //topArray still not fully filled yet and new word is not smallest
-                topArray.add(insertPos,key); //add to the correct position and push rest of the element to the right
-            } else if (topArray.size()>=10 && insertPos>-1){
-                topArray.add(insertPos,key);
-                topArray.remove(10); //remove the 11th element
-            }
+        if (topArray.size()<10 && insertPos==-1){ //topArray still not fully filled yet and new word is smallest
+            topArray.add(key); //add to the end of the list
+        } else if (topArray.size()<10 && insertPos>-1){ //topArray still not fully filled yet and new word is not smallest
+            topArray.add(insertPos,key); //add to the correct position and push rest of the element to the right
+        } else if (topArray.size()>=10 && insertPos>-1){
+            topArray.add(insertPos,key);
+            topArray.remove(10); //remove the 11th element
         }
     }
     //Printout top 10 words
@@ -52,5 +44,4 @@ public class FrequencyCalculator {
             System.out.printf("%d. %s: %.3f\n",l+1,word,frequency);
         }
     }
-
 }
