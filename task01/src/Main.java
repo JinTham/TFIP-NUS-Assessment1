@@ -29,7 +29,7 @@ public class Main {
             //To lower case and ignore punctuation, then split by space
             String[] lineArray = line.toLowerCase().replaceAll("[^a-zA-Z0-9\\s]","").trim().split(" ");
             for (int i=0;i<lineArray.length;i++){
-                //Add word into map if ady exists, else add as new key
+                //Increase word count if key ady exists, else add as new key
                 if (map.containsKey(lineArray[i])){
                     map.put(lineArray[i],map.get(lineArray[i])+1);
                 } else {
@@ -47,7 +47,6 @@ public class Main {
             frequencyCalculator.updateRanking(key, insertPos);
         }
         //Print out top 10 words
-        System.out.println("Total words: "+totalWord);
         frequencyCalculator.printTopWords();
         //Close reader
         fileReader.close();
