@@ -10,6 +10,7 @@ public class Main {
         String input;
         Boolean exit = false;
         Float last = 0.0f;
+        Calculator calculator = new Calculator();
         while (!exit){
             input = scanner.nextLine();
             String[] inputArray = input.split(" ");
@@ -37,21 +38,7 @@ public class Main {
                 num2 = Float.parseFloat(inputArray[2]);
             }
             //Perform calculation
-            Float result = 0.00f;
-            switch (inputArray[1]){
-                case "+":
-                    result = num1 + num2;
-                    break;
-                case "-":
-                    result = num1 - num2;
-                    break;
-                case "*":
-                    result = num1 * num2;
-                    break;
-                case "/":
-                    result = num1 / num2;
-                    break;
-            }
+            Float result = calculator.calculate(num1,num2,inputArray[1]);
             //Print out result
             if (result*10%10==0){
                 System.out.println(Math.round(result));
@@ -62,5 +49,6 @@ public class Main {
             last = result; 
         }
         System.out.println("Bye bye");
+        scanner.close();
     }
 }
